@@ -1,0 +1,6 @@
+fastapi==0.121.2
+uvicorn[standard]==0.38.0
+pydantic-settings==2.12.0
+pytest==9.0.1
+# httpx: FastAPI test client, and future requests to external APIs
+httpx==0.28.1
