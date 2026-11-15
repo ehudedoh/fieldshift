@@ -3,6 +3,14 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import App from "./App.jsx";
 
+function renderAt(path) {
+  return render(
+    <MemoryRouter initialEntries={[path]}>
+      <App />
+    </MemoryRouter>,
+  );
+}
+
 describe("App", () => {
   beforeEach(() => {
     vi.stubGlobal(
@@ -25,18 +33,29 @@ describe("App", () => {
     vi.unstubAllGlobals();
   });
 
-  it("renders the product name", () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+  it("renders the landing page", () => {
+    renderAt("/");
 
-    expect(screen.getByText("FieldShift")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         name: /from earth data to smarter crop rotations/i,
       }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /open workspace/i })).toHaveAttribute(
+      "href",
+      "/overview",
+    );
+  });
+
+  it("shows the overview empty states without invented data", () => {
+    renderAt("/overview");
+
+    expect(screen.getByRole("heading", { name: "Overview" })).toBeInTheDocument();
+    expect(screen.getByText("No farm selected")).toBeInTheDocument();
+    expect(screen.getByText(/NASA observations are not connected/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "CropShift" })).toHaveAttribute(
+      "href",
+      "/cropshift",
+    );
   });
 });

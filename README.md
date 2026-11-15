@@ -2,7 +2,7 @@
 
 Agricultural analysis and climate-adaptation platform. The product core is **CropShift**: compare crop-rotation scenarios using real environmental data and local farm information.
 
-> **Current status:** project initialization. No business modules yet. No NASA or Supabase connection.
+> **Current status:** phase 2 — visual identity, landing page, workspace navigation, and an empty dashboard. No NASA or Supabase connection. No invented farm or climate data.
 
 Functional reference: `CAHIER_DES_CHARGES.md`  
 Development rules: `AGENTS.md`
@@ -94,8 +94,16 @@ npm run build
 - Missing data is reported, never silently replaced.
 - Rotation scores are not yield probabilities.
 
+## Interface
+
+- `/` — landing page
+- `/overview` — dashboard (empty until a farm and real data exist)
+- `/farms` — farm workspace (not implemented yet)
+- `/monitoring` — climate and vegetation workspace (not implemented yet)
+- `/cropshift` — rotation comparison (not implemented yet)
+- `/reports` — diagnostics (not implemented yet)
+
 ## Planned next steps
 
-1. Visual identity, navigation, landing page, and dashboard (phase 2).
-2. Farm management and map (phase 3).
-3. NASA POWER integration (phase 4).
+1. Farm management and map (phase 3).
+2. NASA POWER integration (phase 4).
